@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Từ vựng</title>
+
+    <!-- Pinyin -->
+    <script src="https://unpkg.com/pinyin-pro"></script>
+
+    <!-- Icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style> 
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 15px;
+    margin: 0;
+    background: #111;
+    color: white;
+  }
+
+  /* khu vực nút */
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background: #444;
+    transform: scale(1.03);
+  }
+
+  /* list từ */
+  #list {
+    width: 100%;
+  }
+
+  p {
+    font-size: 17px;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 12px;
+    background: #1c1c1c;
+    word-wrap: break-word;
+    transition: 0.2s;
+  }
+
+  p:hover {
+    background: #2b2b2b;
+    transform: translateX(5px);font-size: 20px;
+  }
+
+  .pinyin {
+    color: #bdbdbd;
+    margin-left: 6px;
+    font-size: 15px;
+  }
+
+  .speak {
+    margin-left: 10px;
+    cursor: pointer;
+    color: #00ffcc;
+  }
+
+  .speak:hover {
+    color: red;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: #444;
+    margin: 20px 0;
+  }
+
+  /* 📱 Mobile */
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      padding: 10px; transition: 0.2s;
+    }
+
+    .pinyin {
+      display: block;
+      margin-top: 5px;
+      margin-left: 0;
+      font-size: 13px;
+    }
+ p:hover {
+      font-size: 19px;
+    }
+    button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+
+  /* 📱 rất nhỏ */
+  @media (max-width: 480px) {
+    .btn-group {
+      flex-direction: column;
+    }
+
+    button {
+      width: 100%;
+    }
+
+    p {
+      font-size: 14px; transition: 0.2s;
+    }
+    p:hover {
+      font-size: 18px;
+    }
+  }
+</style>
+    </style>
+  </head>
+
+  <body>
+
+    <div class="btn-group">
+  <button id="readAll">🔊 Đọc tất cả</button>
+  <button id="randomBtn">🔀 Random từ</button>
+  <button id="randomHideBtn">🎲 Random + Ẩn nghĩa</button>
+   <button id="randomOnlyHanziBtn">🀄 Random chỉ hiện tiếng Hán</button>
+</div> 
+    <div id="list">
+      <p>附近：gần đây,lân cận</p>
+      <p>银行：ngân hàng</p>
+      <p>家：nhà</p>
+      <p>从：từ</p>
+      <p>往：đi đến,hướng tới</p>
+      <p>前：phía trước</p>
+      <p>走：đi</p>
+      <p>然后：sau đó</p>
+      <p>左：bên trái</p>
+      <p>拐：quẹo,rẽ</p>
+      <p>上：trên</p>
+      <p>下：dưới</p>
+      <p>饭店：nhà hàng</p>
+      <p>就：ngay,chính(là)</p>
+      <p>对面：đối diện</p>
+      <p>面：mặt,bên, phía</p>
+      <p>书店：nhà sách</p>
+      <p>超市：siêu thị</p>
+      <p>右：bên phải</p>
+      <hr></hr>
+      
+      <p>在：ở , lại</p>
+      <p>工作：làm việc</p>
+      <p>苹果：táo</p>
+      <p>公司：công ty</p>
+      <p>留学生：sinh viên quốc tế</p>
+      <p>学生：sinh viên, học sinh</p>
+      <p>这儿：ở đây</p>
+      <p>学习：học</p>
+      <p>这里：ở đây</p>
+      <p>学：học</p>
+      <p>汉语：Tiếng Trung</p>
+      <p>对：đúng</p>
+      <p>男朋友：chàng trai</p>
+      <p>做：làm</p>
+      <p>大学：đại học</p>
+      <p>教：dạy</p>
+      <p>英语：Tiếng Anh</p>
+      <p>女朋友：bạn gái</p>
+      <p>中学：trung học</p>
+
+      <hr></hr>
+      <p>要：muốn，cần,phải</p>
+      <p>吃：ăn</p>
+      <p>点人：1 chút , 1 ít</p>
+      <p>个：cái</p>
+      <p>牛肉：thịt bò</p>
+      <p>青菜：rau xanh</p>
+      <p>还：vẫn, còn</p>
+      <p>两：hai</p>
+      <p>碗：bát</p>
+      <p>米饭：cơm</p>
+      <p>快：nhanh</p>
+      <p>饿：đói</p>
+      <p>喝：uống</p>
+      <p>杯：cốc</p>
+      <p>奶茶：trà sữa</p>
+      <p>茶：trà</p>
+      <p>大：lớn</p>
+      <p>还是：hay là</p>
+      <p>小：nhỏ</p>
+      <p>咖啡：cà phê</p>
+      <p>一共：tổng cộng</p> 
+      <hr></hr>
+
+      <p>你：bạn</p>
+      <p>好：tốt</p>
+      <p>老师：giáo viên</p>
+      <p>您：ngài</p>
+      <p>你们：các bạn</p>
+      <p>问：hỏi</p>
+      <p>叫：gọi</p>
+      <p>什么：gì</p>
+      <p>名字：tên</p>
+      <p>我：tôi</p>
+      <p>是：là</p>
+      <p>哪：nào</p>
+      <p>国：quốc gia</p>
+      <p>人：người</p>
+      <p>请问：xin hỏi</p>
+      <p>贵姓：quý danh</p>
+      <p>贵：quý</p>
+      <p>姓：họ</p>
+      <p>这：này</p>
+      <p>的：của</p>
+      <p>名片：danh thiếp</p>
+      <p>对不起：xin lỗi</p>
+      <p>没有：không có</p>
+      <p>有：có</p>
+      <p>没关系：không sao</p>
+      <p>很：rất</p>
+      <p>高兴：vui</p>
+      <p>认识：quen biết</p>
+      <p>先生：ông</p>
+      <p>也：cũng</p>
+      <hr></hr>
+
+      <p>小姐：cô gái</p>
+      <p>师傅：sư phụ</p>
+      <p>哪儿：đâu</p>
+      <p>去：đi</p>
+      <p>哪里: đâu</p>
+      <p>人民：nhân dân</p>
+      <p>广场：quảng trường</p>
+      <p>知道：biết</p>
+      <p>了：rồi</p>
+      <p>远：xa</p>
+      <p>近：gần</p>
+      <p>到：đến</p>
+      <p>多少：bao nhiêu</p>
+      <p>钱：tiền</p>
+      <p>块：đồng(đơn vị tiền tệ)</p>
+      <p>谢谢：cảm ơn</p>
+      <p>不客气：không có gì, đừng khách sáo</p>
+      <p>客气：khách sáo</p>
+      <p>再见：tạm biệt，hẹn gặp lại</p>
+      <p>再：lại</p> 
+    </div>
+
+    <script>
+
+      
+      function speak(text) {
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = "zh-CN";
+        utter.rate = 0.8;
+        speechSynthesis.speak(utter);
+      }
+      function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+
+document.getElementById("randomHideBtn").addEventListener("click", () => {
+  shuffleArray(list);
+
+  const container = document.getElementById("list");
+  container.innerHTML = "";
+
+  list.forEach((item) => {
+    const p = document.createElement("p");
+
+    // ban đầu ẩn nghĩa
+    p.innerHTML = `
+      ${item.hanzi}
+      <span class="pinyin">(${item.py})</span>
+      <span class="meaning" style="display:none;">：${item.vietnamese}</span>
+      <i class="fa-solid fa-volume-high speak"></i>
+    `;
+
+    // click để hiện nghĩa
+   // hover vào hiện nghĩa
+p.addEventListener("mouseenter", () => {
+  p.querySelector(".meaning").style.display = "inline";
+});
+
+// rời chuột thì ẩn lại
+p.addEventListener("mouseleave", () => {
+  p.querySelector(".meaning").style.display = "none";
+});
+
+    // nút loa
+    p.querySelector(".speak").addEventListener("click", (e) => {
+      e.stopPropagation();
+      speak(item.hanzi);
+    });
+
+    container.appendChild(p);
+  });
+});
+document.getElementById("randomBtn").addEventListener("click", () => {
+  shuffleArray(list); // xáo trộn dữ liệu
+
+  const container = document.getElementById("list");
+  container.innerHTML = ""; // xoá list cũ
+
+  list.forEach((item) => {
+    const p = document.createElement("p");
+
+    p.innerHTML = `
+      ${item.hanzi}：${item.vietnamese}
+      <span class="pinyin">(${item.py})</span>
+      <i class="fa-solid fa-volume-high speak"></i>
+    `;
+
+    // thêm lại sự kiện click loa
+    p.querySelector(".speak").addEventListener("click", (e) => {
+      e.stopPropagation();
+      speak(item.hanzi);
+    });
+
+    container.appendChild(p);
+  });
+});
+      document.querySelectorAll("#list p").forEach((p) => {
+        let text = p.textContent;
+
+        // lấy chữ Hán
+        let hanzi = text.split("：")[0];
+
+        // pinyin tự động
+        let py = window.pinyinPro.pinyin(hanzi, {
+          toneType: "symbol",
+        });
+
+        // tạo HTML mới
+        p.innerHTML = `
+          ${hanzi}：${text.split("：")[1]}
+          <i class="fa-solid fa-volume-high speak"></i>
+          `;
+        // <span class="pinyin">(${py})</span>
+
+        // sự kiện click loa
+        p.querySelector(".speak").addEventListener("click", (e) => {
+          e.stopPropagation();
+          speak(hanzi);
+        });
+      });
+      function speak(text) {
+        return new Promise((resolve) => {
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = "zh-CN";
+          utter.rate = 0.8;
+
+          utter.onend = resolve; // đọc xong mới chạy tiếp
+          speechSynthesis.speak(utter);
+        });
+      }
+
+      const list = [];
+
+      document.querySelectorAll("#list p").forEach((p) => {
+        let text = p.textContent;
+
+        let hanzi = text.split("：")[0];
+        let vietnamese = text.split("：")[1];
+
+        let py = window.pinyinPro.pinyin(hanzi, {
+          toneType: "symbol",
+        });
+
+        // lưu lại để đọc tất cả
+        list.push({ hanzi, py, vietnamese });
+
+        p.innerHTML = `
+      ${hanzi}：${vietnamese}
+       <span class="pinyin">(${py})</span>
+      <i class="fa-solid fa-volume-high speak"></i>
+    `;
+
+        p.querySelector(".speak").addEventListener("click", (e) => {
+          e.stopPropagation();
+          speak(hanzi);
+        });
+      });
+
+      // 🔥 đọc tất cả
+      document.getElementById("readAll").addEventListener("click", async () => {
+        for (let item of list) {
+          await speak(item.hanzi); // đọc chữ
+          await speak(item.py); // đọc pinyin
+          await speak(item.vietnamese); // đọc tiếng việt
+        }
+      });
+ 
+document
+  .getElementById("randomOnlyHanziBtn")
+  .addEventListener("click", () => {
+
+    shuffleArray(list);
+
+    const container = document.getElementById("list");
+    container.innerHTML = "";
+
+    list.forEach((item) => {
+
+      const p = document.createElement("p");
+
+      // ban đầu chỉ hiện tiếng Hán
+      p.innerHTML = `
+        ${item.hanzi}
+
+        <span class="pinyin" style="display:none;">
+          (${item.py})
+        </span>
+
+        <span class="meaning" style="display:none;">
+          ：${item.vietnamese}
+        </span>
+
+        <i class="fa-solid fa-volume-high speak"></i>
+      `;
+
+      // click hiện nghĩa + pinyin
+    // hover hiện pinyin + nghĩa
+p.addEventListener("mouseenter", () => {
+  p.querySelector(".pinyin").style.display = "inline";
+  p.querySelector(".meaning").style.display = "inline";
+});
+
+// bỏ hover thì ẩn lại
+p.addEventListener("mouseleave", () => {
+  p.querySelector(".pinyin").style.display = "none";
+  p.querySelector(".meaning").style.display = "none";
+});
+
+      // loa đọc
+      p.querySelector(".speak").addEventListener("click", (e) => {
+        e.stopPropagation();
+        speak(item.hanzi);
+      });
+
+      container.appendChild(p);
+    });
+  });
+
+
+      
+    </script>
+  </body>
+</html>
