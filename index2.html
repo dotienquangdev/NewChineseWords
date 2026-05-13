@@ -18,7 +18,7 @@
   * {
     box-sizing: border-box;
   }
-
+ 
   body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -93,7 +93,7 @@
   hr {
     border: none;
     height: 1px;
-    background: #444;
+    background: #ff1111;
     margin: 20px 0;
   }
 
@@ -148,11 +148,39 @@
 
     <div class="btn-group">
   <button id="readAll">🔊 Đọc tất cả</button>
+  <button id="hideMeaningBtn">🙈 Ẩn nghĩa</button>
+  <button id="hideAllBtn">🕶️ Ẩn nghĩa + Pinyin</button>
   <button id="randomBtn">🔀 Random từ</button>
   <button id="randomHideBtn">🎲 Random + Ẩn nghĩa</button>
    <button id="randomOnlyHanziBtn">🀄 Random chỉ hiện tiếng Hán</button>
 </div> 
     <div id="list">
+      <p>昨天：hôm qua</p>
+      <p>今天：hôm nay</p>
+      <p>明天：ngày mai</p>
+      <p>真:thật, thật là</p>
+      <p>漂亮:đẹp，xinh đẹp</p>
+      <p>事：việc</p>
+      <p>生日：sinh nhật</p>
+      <p>几：mấy</p>
+      <p>号：ngày</p>
+      <p>月：tháng</p>
+      <p>快乐：vui vẻ，hạnh phúc</p>
+      <p>星期:tuần</p>
+      <p>有空儿：có thời gian rảnh，rảnh dỗi</p>
+      <p>想：muốn，suy nghĩ</p>
+      <p>请：xin vui lòng,mời</p>
+      <p>晚饭：bữa tối</p>
+      <p>为什么：tại sao</p>
+      <p>太。。。了：...quá</p>
+      <p>那：kia，vậy , vậy thì</p>
+      <p>晚上：buổi tối</p>
+      <p>看：xem，nhìn</p>
+      <p>电影：phim</p>
+      <p>学校：trường học</p>
+      <p>见：gặp</p>
+      
+      <hr>
       <p>附近：gần đây,lân cận</p>
       <p>银行：ngân hàng</p>
       <p>家：nhà</p>
@@ -172,7 +200,8 @@
       <p>书店：nhà sách</p>
       <p>超市：siêu thị</p>
       <p>右：bên phải</p>
-      <hr></hr>
+
+      <hr>
       
       <p>在：ở , lại</p>
       <p>工作：làm việc</p>
@@ -194,7 +223,8 @@
       <p>女朋友：bạn gái</p>
       <p>中学：trung học</p>
 
-      <hr></hr>
+      <hr>
+
       <p>要：muốn，cần,phải</p>
       <p>吃：ăn</p>
       <p>点人：1 chút , 1 ít</p>
@@ -216,7 +246,8 @@
       <p>小：nhỏ</p>
       <p>咖啡：cà phê</p>
       <p>一共：tổng cộng</p> 
-      <hr></hr>
+
+      <hr>
 
       <p>你：bạn</p>
       <p>好：tốt</p>
@@ -248,7 +279,8 @@
       <p>认识：quen biết</p>
       <p>先生：ông</p>
       <p>也：cũng</p>
-      <hr></hr>
+
+      <hr>
 
       <p>小姐：cô gái</p>
       <p>师傅：sư phụ</p>
@@ -270,6 +302,7 @@
       <p>客气：khách sáo</p>
       <p>再见：tạm biệt，hẹn gặp lại</p>
       <p>再：lại</p> 
+      
     </div>
 
     <script>
@@ -287,7 +320,93 @@
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
+// 🙈 Ẩn nghĩa
+document.getElementById("hideMeaningBtn").addEventListener("click", () => {
 
+  const container = document.getElementById("list");
+  container.innerHTML = "";
+
+  list.forEach((item) => {
+
+    const p = document.createElement("p");
+
+    p.innerHTML = `
+      ${item.hanzi}
+      <span class="pinyin">(${item.py})</span>
+
+      <span class="meaning" style="display:none;">
+        ：${item.vietnamese}
+      </span>
+
+      <i class="fa-solid fa-volume-high speak"></i>
+    `;
+
+    // hover hiện nghĩa
+    p.addEventListener("mouseenter", () => {
+      p.querySelector(".meaning").style.display = "inline";
+    });
+
+    // bỏ hover thì ẩn
+    p.addEventListener("mouseleave", () => {
+      p.querySelector(".meaning").style.display = "none";
+    });
+
+    // loa
+    p.querySelector(".speak").addEventListener("click", (e) => {
+      e.stopPropagation();
+      speak(item.hanzi);
+    });
+
+    container.appendChild(p);
+  });
+});
+
+
+// 🕶️ Ẩn nghĩa + pinyin
+document.getElementById("hideAllBtn").addEventListener("click", () => {
+
+  const container = document.getElementById("list");
+  container.innerHTML = "";
+
+  list.forEach((item) => {
+
+    const p = document.createElement("p");
+
+    p.innerHTML = `
+      ${item.hanzi}
+
+      <span class="pinyin" style="display:none;">
+        (${item.py})
+      </span>
+
+      <span class="meaning" style="display:none;">
+        ：${item.vietnamese}
+      </span>
+
+      <i class="fa-solid fa-volume-high speak"></i>
+    `;
+
+    // hover hiện tất cả
+    p.addEventListener("mouseenter", () => {
+      p.querySelector(".pinyin").style.display = "inline";
+      p.querySelector(".meaning").style.display = "inline";
+    });
+
+    // bỏ hover thì ẩn
+    p.addEventListener("mouseleave", () => {
+      p.querySelector(".pinyin").style.display = "none";
+      p.querySelector(".meaning").style.display = "none";
+    });
+
+    // loa
+    p.querySelector(".speak").addEventListener("click", (e) => {
+      e.stopPropagation();
+      speak(item.hanzi);
+    });
+
+    container.appendChild(p);
+  });
+});
 
 document.getElementById("randomHideBtn").addEventListener("click", () => {
   shuffleArray(list);
