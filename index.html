@@ -143,6 +143,255 @@
     }
   }
 
+
+  /* ===== GAME ===== */
+
+#gameSection{
+  margin-top:20px;
+}
+
+.game-title{
+  font-size:28px;
+  font-weight:bold;
+  margin-bottom:20px;
+  text-align:center;
+
+  background:linear-gradient(90deg,#00ffcc,#00aaff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.lesson-checks{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.lesson-checks label{
+  background:#1b1b1b;
+  border:1px solid #333;
+  padding:12px;
+  border-radius:14px;
+  cursor:pointer;
+  transition:0.25s;
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.lesson-checks label:hover{
+  background:#2a2a2a;
+  transform:translateY(-2px);
+}
+
+.lesson-checks input{
+  transform:scale(1.2);
+  accent-color:#00ffcc;
+}
+
+/* board */
+
+#gameBoard{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:16px;
+  margin-top:25px;
+}
+
+/* card */
+
+.game-card{
+  position:relative;
+
+  min-height:140px;
+
+  border-radius:20px;
+
+  background:linear-gradient(145deg,#1f1f1f,#2b2b2b);
+
+  border:1px solid #333;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  cursor:pointer;
+
+  overflow:hidden;
+
+  transition:
+    transform .25s,
+    box-shadow .25s,
+    background .25s;
+}
+
+.game-card:hover{
+  transform:
+    translateY(-6px)
+    scale(1.03);
+
+  box-shadow:
+    0 10px 25px rgba(0,255,200,.15);
+
+  background:linear-gradient(145deg,#252525,#333);
+}
+
+.game-card:active{
+  transform:scale(.96);
+}
+
+/* số thứ tự */
+
+.card-number{
+  position:absolute;
+  top:10px;
+  left:12px;
+
+  font-size:12px;
+
+  color:#888;
+
+  background:#111;
+
+  padding:3px 8px;
+
+  border-radius:999px;
+}
+
+/* ô vuông */
+
+.card-hidden{
+  font-size:34px;
+  color:#666;
+}
+
+/* hán tự */
+
+.card-hanzi{
+  font-size:34px;
+  font-weight:bold;
+  color:white;
+}
+
+/* pinyin */
+
+.card-pinyin{
+  margin-top:6px;
+
+  color:#aaa;
+
+  font-size:14px;
+}
+
+/* nghĩa */
+
+.card-meaning{
+  margin-top:10px;
+
+  color:#00ffcc;
+
+  font-size:15px;
+
+  line-height:1.4;
+}
+
+/* glow effect */
+
+.game-card::before{
+  content:"";
+
+  position:absolute;
+
+  inset:-2px;
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent,
+      rgba(0,255,200,.15),
+      transparent
+    );
+
+  opacity:0;
+
+  transition:.3s;
+}
+
+.game-card:hover::before{
+  opacity:1;
+}
+
+/* mobile */
+
+@media(max-width:768px){
+
+  #gameBoard{
+    grid-template-columns:
+      repeat(auto-fit,minmax(100px,1fr));
+  }
+
+  .game-card{
+    min-height:120px;
+  }
+
+  .card-hanzi{
+    font-size:28px;
+  }
+}
+.card-done{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+
+  color:#fff;
+}
+
+.card-done i{
+  font-size:42px;
+  color:#00ff99;
+
+  text-shadow:
+    0 0 10px rgba(0,255,150,.7);
+}
+
+.card-done span{
+  font-size:16px;
+  font-weight:bold;
+}
+#exitGame{
+  background:#441111;
+  color:#ffb3b3;
+  width: 150px;
+}
+
+#exitGame:hover{
+  background:#661111;
+}
+
+.mode-switch{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.mode-switch button{
+  background:#222;
+  border:1px solid #333;
+  padding:12px;
+  border-radius:12px;
+}
+
+.mode-switch button.active{
+  background:#00ffcc;
+  color:#000;
+  font-weight:bold;
+}
 </style>
     </style>
   </head>
@@ -159,9 +408,44 @@
       <button id="randomBtn">🔀 Random từ</button>
       <button id="randomHideBtn">🎲 Random + Ẩn nghĩa</button>
       <button id="randomOnlyHanziBtn">🀄 Random chỉ hiện tiếng Hán</button>
-    </div> 
-    <div id="list">
-      <!-- bài 9 -->
+      <button id="showVocabulary">📘 Từ vựng</button>
+      <button id="showGame">🎮 Chơi game</button>
+    </div>   
+
+  <div id="gameSection" style="display:none;">
+
+  
+<div id="studyMode"> 
+  <div class="lesson-checks">
+    <label><input type="checkbox" value="1"> Bài 1</label>
+    <label><input type="checkbox" value="2"> Bài 2</label>
+    <label><input type="checkbox" value="3"> Bài 3</label>
+    <label><input type="checkbox" value="4"> Bài 4</label>
+    <label><input type="checkbox" value="5"> Bài 5</label>
+    <label><input type="checkbox" value="6"> Bài 6</label>
+    <label><input type="checkbox" value="7"> Bài 7</label>
+    <label><input type="checkbox" value="8"> Bài 8</label>
+    <label><input type="checkbox" value="9"> Bài 9</label>
+  </div>
+
+  <div class="btn-group">
+    <button id="selectAllGame">✅ Chọn tất cả</button>
+    <button id="startGame">🎲 Bắt đầu game</button>
+    <button id="exitGame">
+    ❌ Thoát game
+  </button>
+  
+  </div>
+
+  <div id="gameBoard"></div>
+
+</div>
+</div>
+
+  <div id="list">
+    
+    <!-- bài 9 -->
+    <div class="lesson9">
       <p>喜欢：thích</p>
       <p>非常：rất，cực kỳ</p>
       <p>都：đều</p>
@@ -181,10 +465,11 @@
       <p>好吃：ngon</p>
       <p>走路：đi bộ</p>
       <p>公交车：xe buýt</p>
+    </div>
       
-
-       <hr>
-        <!-- bài 8 -->
+    <hr>
+    <!-- bài 8 -->
+    <div class="lesson8">
       <p>昨天：hôm qua</p>
       <p>今天：hôm nay</p>
       <p>明天：ngày mai</p>
@@ -209,9 +494,11 @@
       <p>电影：phim</p>
       <p>学校：trường học</p>
       <p>见：gặp</p>
+    </div>
       
       <hr>
-       <!-- bài 7 -->
+    <!-- bài 7 -->
+    <div class="lesson7">
       <p>附近：gần đây,lân cận</p>
       <p>银行：ngân hàng</p>
       <p>家：nhà</p>
@@ -231,9 +518,16 @@
       <p>书店：nhà sách</p>
       <p>超市：siêu thị</p>
       <p>右：bên phải</p>
+      <p>药店：hiệu thuốc</p>
+      <p>取款机：máy rút tiền</p>
+      <p>邮局：bưu điện</p>
+      <p>地铁站：tàu điện ngầm</p>
+      <p>电影院：rạp chiếu phim</p>
+    </div>
 
-      <hr>
-       <!-- bài 6 -->
+    <hr>
+    <!-- bài 6 -->
+    <div class="lesson6">
       <p>在：ở , lại</p>
       <p>工作：làm việc</p>
       <p>苹果：táo</p>
@@ -260,10 +554,10 @@
       <p>北京：Bắc kinh</p>
       <p>上海：Thượng Hải</p>
       <p>苹果公司：Công ty Apple </p>
-
-
-      <hr>
- <!-- bài 5 -->
+    <div> 
+    <hr>
+    <!-- bài 5 -->
+    <div class="lesson5">
       <p>要：muốn，cần,phải</p>
       <p>吃：ăn</p>
       <p>点人：1 chút , 1 ít</p>
@@ -276,7 +570,6 @@
       <p>米饭：cơm</p>
       <p>快：nhanh</p>
       <p>饿：đói</p>
-
       <p>喝：uống</p>
       <p>杯：cốc, ly</p>
       <p>奶茶：trà sữa</p>
@@ -297,8 +590,11 @@
       <p>可乐：coca cola</p>
       <p>咖啡：cà phê</p>
       <p>茶：trà</p>
-      <hr>
- <!-- bài 4 -->
+    </div>
+      
+    <hr>
+    <!-- bài 4 -->
+    <div class="lesson4">
       <p>小姐：cô gái，tiểu thư</p>
       <p>师傅：sư phụ</p>
       <p>去：đi</p>
@@ -318,7 +614,10 @@
       <p>客气：lễ phép,khách sáo</p>
       <p>再见：tạm biệt，hẹn gặp lại</p>
       <p>在：ở , lại</p>
- <!-- bài 3 -->
+    </div>
+      
+    <!-- bài 3 -->
+    <div class="lesson3">
       <p>请问：xin hỏi</p>
       <p>问：hỏi</p>
       <p>贵姓：quý danh</p>
@@ -336,40 +635,46 @@
       <p>认识：quen biết</p>
       <p>先生：ông</p>
       <p>也：cũng</p>
-      <hr>
-      <!-- bài 2 -->
-       <p>叫：gọi，tên là</p>
-       <p>什么：gì</p>
-       <p>名字：tên</p>
-       <p>我：tôi</p>
-       <p>呢：Trợ từ ngữ khí </p>
-       <p>是：là</p>
-       <p>哪：nào</p>
-       <p>国：quốc gia</p>
-       <p>人：người</p>
-       <hr>
-       <!-- bài 1 -->
-       <p>你：bạn</p>
-       <p>好：tốt</p>
-       <p>老师：giáo viên</p>
-       <p>您：ngài</p>
-       <p>你们：các bạn</p>
-       <p>们：đặt sau đại từ hoặc danh từ để chỉ số nhiều</p>
-       <p>王：vương</p>
-       <p>一：1</p>
-       <p>二：2</p>
-       <p>三：3</p>
-       <p>四：4</p>
-       <p>五：5</p>
-       <p>六：6</p>
-       <p>七：7</p>
-       <p>八：8</p>
-       <p>九：9</p>
-       <p>十：10</p>
-       <p>百：100</p>
-       <P>零：0</P>
-
     </div>
+      
+    <hr>
+    <div class="lesson2">
+      <!-- bài 2 -->
+      <p>叫：gọi，tên là</p>
+      <p>什么：gì</p>
+      <p>名字：tên</p>
+      <p>我：tôi</p>
+      <p>呢：Trợ từ ngữ khí </p>
+      <p>是：là</p>
+      <p>哪：nào</p>
+      <p>国：quốc gia</p>
+      <p>人：người</p>
+    </div>
+      
+    <hr>
+    <div class="lesson1">
+     <!-- bài 1 -->
+     <p>你：bạn</p>
+     <p>好：tốt</p>
+     <p>老师：giáo viên</p>
+     <p>您：ngài</p>
+     <p>你们：các bạn</p>
+     <p>们：đặt sau đại từ hoặc danh từ để chỉ số nhiều</p>
+     <p>王：vương</p>
+     <p>一：1</p>
+     <p>二：2</p>
+     <p>三：3</p>
+     <p>四：4</p>
+     <p>五：5</p>
+     <p>六：6</p>
+     <p>七：7</p>
+     <p>八：8</p>
+     <p>九：9</p>
+     <p>十：10</p>
+     <p>百：100</p>
+     <P>零：0</P>
+    </div>
+  </div>
 
     <script>
 
@@ -598,9 +903,8 @@ document.getElementById("randomBtn").addEventListener("click", () => {
         });
       });
 
-   // 🔥 đọc tất cả 
-
-document.getElementById("readAll").addEventListener("click", async () => {
+  // 🔥 đọc tất cả 
+    document.getElementById("readAll").addEventListener("click", async () => {
 
   // nếu đang đọc thì không chạy thêm
   if (isReading) return;
@@ -617,30 +921,29 @@ document.getElementById("readAll").addEventListener("click", async () => {
   isReading = false;
 });
 
-document.getElementById("pauseRead").addEventListener("click", () => {
+    document.getElementById("pauseRead").addEventListener("click", () => {
 
   speechSynthesis.pause();
 });
 
-
-document.getElementById("resumeRead").addEventListener("click", () => {
+  document.getElementById("resumeRead").addEventListener("click", () => {
 
   speechSynthesis.resume();
 });
 
-document.getElementById("stopRead").addEventListener("click", () => {
+  document.getElementById("stopRead").addEventListener("click", () => {
 
   isReading = false;
 
   speechSynthesis.cancel();
 });
- document.getElementById("stopRead").addEventListener("click", () => {
+  document.getElementById("stopRead").addEventListener("click", () => {
 
   isReading = false;
 
   speechSynthesis.cancel();
 });
-document
+  document
   .getElementById("randomOnlyHanziBtn")
   .addEventListener("click", () => {
 
@@ -691,8 +994,221 @@ p.addEventListener("mouseleave", () => {
     });
   });
 
+// ===== chuyển tab =====
 
+const listDiv = document.getElementById("list");
+const gameSection = document.getElementById("gameSection");
+
+document.getElementById("showVocabulary").onclick = () => {
+
+  listDiv.style.display = "block";
+  gameSection.style.display = "none";
+};
+
+document.getElementById("showGame").onclick = () => {
+
+  listDiv.style.display = "none";
+  gameSection.style.display = "block";
+};
+
+// ===== chọn tất cả =====
+
+document.getElementById("selectAllGame").onclick = () => {
+
+  document
+    .querySelectorAll(".lesson-checks input")
+    .forEach(cb => cb.checked = true);
+};
+
+// ===== game =====
+
+document.getElementById("startGame").onclick = () => {
+
+  const selectedLessons = [
+    ...document.querySelectorAll(".lesson-checks input:checked")
+  ].map(cb => cb.value);
+
+  let gameWords = [];
+
+  selectedLessons.forEach(num => {
+
+    const lesson = document.querySelectorAll(`.lesson${num} p`);
+
+    lesson.forEach(p => {
+
+      const text = p.textContent;
+
+      const hanzi = text.split("：")[0];
+      const vn = text.split("：")[1];
+
+      const py = window.pinyinPro.pinyin(hanzi, {
+        toneType: "symbol",
+      });
+
+      gameWords.push({
+        hanzi,
+        vn,
+        py
+      });
+    });
+  });
+
+  // random
+  shuffleArray(gameWords);
+
+  // render
+  const board = document.getElementById("gameBoard");
+
+  board.innerHTML = "";
+
+  gameWords.forEach((word,index) => {
+
+    const card = document.createElement("div");
+
+    card.className = "game-card";
+
+    let state = 0;
+
+    // 0 = ô vuông
+    // 1 = hiện hán
+    // 2 = hiện nghĩa
+
+  card.innerHTML = `
+  <div class="card-number">${index+1}</div>
+
+  <div class="card-hidden">
+    ⬜
+  </div>
+`;
+
+   card.onclick = () => {
+
+  state++;
+
+  // ===== lần 1: hiện tiếng Hán =====
+
+  if(state === 1){
+
+    card.innerHTML = `
+      <div class="card-number">${index+1}</div>
+
+      <div>
+
+        <div class="card-hanzi">
+          ${word.hanzi}
+        </div>
+
+      </div>
+    `;
+  }
+
+  // ===== lần 2: hiện full đáp án =====
+
+  else if(state === 2){
+
+    card.innerHTML = `
+      <div class="card-number">${index+1}</div>
+
+      <div>
+
+        <div class="card-hanzi">
+          ${word.hanzi}
+        </div>
+
+        <div class="card-pinyin">
+          ${word.py}
+        </div>
+
+        <div class="card-meaning">
+          ${word.vn}
+        </div>
+
+      </div>
+    `;
+  }
+
+  // ===== lần 3: hoàn thành =====
+
+  else if(state === 3){
+
+    card.innerHTML = `
+      <div class="card-number">${index+1}</div>
+
+      <div class="card-done">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+
+      </div>
+    `;
+
+    card.style.background =
+      "linear-gradient(145deg,#063,#0a4)";
+  }
+
+  // ===== lần 4: reset =====
+
+  else{
+
+    state = 0;
+
+    card.style.background =
+      "linear-gradient(145deg,#1f1f1f,#2b2b2b)";
+
+    card.innerHTML = `
+      <div class="card-number">${index+1}</div>
+
+      <div class="card-hidden">
+        ⬜
+      </div>
+    `;
+  }
+};
+
+
+
+    board.appendChild(card);
+  });
+};
       
+
+
+document.getElementById("exitGame").onclick = () => {
+
+  // ẩn game
+  gameSection.style.display = "none";
+
+  // hiện lại từ vựng
+  listDiv.style.display = "block";
+
+  // xoá board game
+  document.getElementById("gameBoard").innerHTML = "";
+};
+
+const studyMode = document.getElementById("studyMode");
+const gameMode = document.getElementById("gameMode");
+
+const btnStudy = document.getElementById("modeStudy");
+const btnGame = document.getElementById("modeGame");
+
+// mặc định
+btnStudy.classList.add("active");
+
+btnStudy.onclick = () => {
+  studyMode.style.display = "block";
+  gameMode.style.display = "none";
+
+  btnStudy.classList.add("active");
+  btnGame.classList.remove("active");
+};
+
+btnGame.onclick = () => {
+  studyMode.style.display = "none";
+  gameMode.style.display = "block";
+
+  btnGame.classList.add("active");
+  btnStudy.classList.remove("active");
+};
     </script>
   </body>
 </html>
