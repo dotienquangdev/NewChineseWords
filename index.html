@@ -30,23 +30,22 @@
 
   /* khu vực nút */
   .btn-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
   }
 
   button {
-    flex: 1;
-    min-width: 140px;
-    padding: 12px;
-    border: none;
-    border-radius: 12px;
-    font-size: 15px;
-    cursor: pointer;
-    background: #222;
-    color: white;
-    transition: 0.3s;
+     width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  background: #222;
+  color: white;
+  transition: 0.3s;
   }
 
   button:hover {
@@ -124,49 +123,80 @@
   }
 
   /* 📱 rất nhỏ */
-  @media (max-width: 480px) {
+  @media (max-width: 400px) {
     .btn-group {
       flex-direction: column;
+      display: flex;
+      flex-wrap: wrap;
     }
 
     button {
-      width: 100%;
+      width: 80px;
+      height: 20px;
     }
 
     p {
-      font-size: 14px; transition: 0.2s;
+      font-size: 10px; transition: 0.2s;
     }
     p:hover {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
+
 </style>
     </style>
   </head>
 
   <body>
 
-    <div class="btn-group">
-  <button id="readAll">🔊 Đọc tất cả</button>
-  <button id="hideMeaningBtn">🙈 Ẩn nghĩa</button>
-  <button id="hideAllBtn">🕶️ Ẩn nghĩa + Pinyin</button>
-  <button id="randomBtn">🔀 Random từ</button>
-  <button id="randomHideBtn">🎲 Random + Ẩn nghĩa</button>
-   <button id="randomOnlyHanziBtn">🀄 Random chỉ hiện tiếng Hán</button>
-</div> 
+   <div class="btn-group">
+    <button id="readAll">🔊 Đọc tất cả</button>
+    <button id="pauseRead">⏸️ Tạm dừng</button>
+    <button id="resumeRead">▶️ Đọc tiếp</button>
+    <button id="stopRead">⏹️ Dừng hẳn</button>
+    <button id="hideMeaningBtn">🙈 Ẩn nghĩa</button>
+    <button id="hideAllBtn">🕶️ Ẩn nghĩa + Pinyin</button>
+    <button id="randomBtn">🔀 Random từ</button>
+    <button id="randomHideBtn">🎲 Random + Ẩn nghĩa</button>
+    <button id="randomOnlyHanziBtn">🀄 Random chỉ hiện tiếng Hán</button>
+  </div> 
     <div id="list">
+      <!-- bài 9 -->
+      <p>喜欢：thích</p>
+      <p>非常：rất，cực kỳ</p>
+      <p>都：đều</p>
+      <p>明天：ngày mai</p>
+      <p>电影院：rạp chiếu phim</p>
+      <p>怎么：thế nào</p>
+      <p>坐：ngồi</p>
+      <p>地铁：tàu điện ngầm</p>
+      <p>出租车：xe taxi</p>
+      <p>吧：trợ từ ngữ khí, chỉ sự gợi ý hoặc phỏng đoán</p>
+      <p>又。。。又。。。：vừa...vừa...</p>
+      <p>又：lại，vừa</p>
+      <p>便宜：rẻ</p>
+      <p>怎么样：thế nào</p> 
+      <p>有名：người nổi tiếng</p>
+      <p>那、哪里：kia, đâu</p>
+      <p>好吃：ngon</p>
+      <p>走路：đi bộ</p>
+      <p>公交车：xe buýt</p>
+      
+
+       <hr>
+        <!-- bài 8 -->
       <p>昨天：hôm qua</p>
       <p>今天：hôm nay</p>
       <p>明天：ngày mai</p>
-      <p>真:thật, thật là</p>
-      <p>漂亮:đẹp，xinh đẹp</p>
+      <p>真：thật, thật là</p>
+      <p>漂亮：đẹp, xinh đẹp</p>
       <p>事：việc</p>
       <p>生日：sinh nhật</p>
       <p>几：mấy</p>
       <p>号：ngày</p>
       <p>月：tháng</p>
       <p>快乐：vui vẻ，hạnh phúc</p>
-      <p>星期:tuần</p>
+      <p>星期：tuần</p>
       <p>有空儿：có thời gian rảnh，rảnh dỗi</p>
       <p>想：muốn，suy nghĩ</p>
       <p>请：xin vui lòng,mời</p>
@@ -181,6 +211,7 @@
       <p>见：gặp</p>
       
       <hr>
+       <!-- bài 7 -->
       <p>附近：gần đây,lân cận</p>
       <p>银行：ngân hàng</p>
       <p>家：nhà</p>
@@ -202,7 +233,7 @@
       <p>右：bên phải</p>
 
       <hr>
-      
+       <!-- bài 6 -->
       <p>在：ở , lại</p>
       <p>工作：làm việc</p>
       <p>苹果：táo</p>
@@ -224,7 +255,7 @@
       <p>中学：trung học</p>
 
       <hr>
-
+ <!-- bài 5 -->
       <p>要：muốn，cần,phải</p>
       <p>吃：ăn</p>
       <p>点人：1 chút , 1 ít</p>
@@ -248,7 +279,7 @@
       <p>一共：tổng cộng</p> 
 
       <hr>
-
+ <!-- bài 4 -->
       <p>你：bạn</p>
       <p>好：tốt</p>
       <p>老师：giáo viên</p>
@@ -281,7 +312,7 @@
       <p>也：cũng</p>
 
       <hr>
-
+ <!-- bài 3 -->
       <p>小姐：cô gái</p>
       <p>师傅：sư phụ</p>
       <p>哪儿：đâu</p>
@@ -307,6 +338,7 @@
 
     <script>
 
+    let isReading = false;
       
       function speak(text) {
         const utter = new SpeechSynthesisUtterance(text);
@@ -531,15 +563,48 @@ document.getElementById("randomBtn").addEventListener("click", () => {
         });
       });
 
-      // 🔥 đọc tất cả
-      document.getElementById("readAll").addEventListener("click", async () => {
-        for (let item of list) {
-          await speak(item.hanzi); // đọc chữ
-          await speak(item.py); // đọc pinyin
-          await speak(item.vietnamese); // đọc tiếng việt
-        }
-      });
- 
+   // 🔥 đọc tất cả 
+
+document.getElementById("readAll").addEventListener("click", async () => {
+
+  // nếu đang đọc thì không chạy thêm
+  if (isReading) return;
+
+  isReading = true;
+
+  for (let item of list) {
+
+    if (!isReading) break;
+
+    await speak(item.hanzi);
+  }
+
+  isReading = false;
+});
+
+document.getElementById("pauseRead").addEventListener("click", () => {
+
+  speechSynthesis.pause();
+});
+
+
+document.getElementById("resumeRead").addEventListener("click", () => {
+
+  speechSynthesis.resume();
+});
+
+document.getElementById("stopRead").addEventListener("click", () => {
+
+  isReading = false;
+
+  speechSynthesis.cancel();
+});
+ document.getElementById("stopRead").addEventListener("click", () => {
+
+  isReading = false;
+
+  speechSynthesis.cancel();
+});
 document
   .getElementById("randomOnlyHanziBtn")
   .addEventListener("click", () => {
