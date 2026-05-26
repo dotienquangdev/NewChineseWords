@@ -30,10 +30,11 @@
 
   /* khu vực nút */
   .btn-group {
-   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 10px;
   margin-bottom: 20px;
+  width: 100%;
   }
 
   button {
@@ -101,7 +102,15 @@
     body {
       padding: 10px;
     }
+  .btn-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
+  button {
+    font-size: 13px;
+    padding: 10px;
+    min-height: 48px;
+  }
     p {
       font-size: 15px;
       padding: 10px; transition: 0.2s;
@@ -125,16 +134,16 @@
   /* 📱 rất nhỏ */
   @media (max-width: 400px) {
     .btn-group {
-      flex-direction: column;
-      display: flex;
-      flex-wrap: wrap;
+       grid-template-columns: 1fr;
     }
 
     button {
-      width: 80px;
-      height: 20px;
-    }
-
+    width: 100%;
+    height: auto;
+    font-size: 12px;
+    padding: 10px;
+  }
+ 
     p {
       font-size: 10px; transition: 0.2s;
     }
