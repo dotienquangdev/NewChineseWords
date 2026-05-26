@@ -146,254 +146,253 @@
 
   /* ===== GAME ===== */
 
-#gameSection{
-  margin-top:20px;
-}
+  #gameSection{
+    margin-top:20px;
+  }
 
-.game-title{
-  font-size:28px;
-  font-weight:bold;
-  margin-bottom:20px;
-  text-align:center;
+  .game-title{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:20px;
+    text-align:center;
 
-  background:linear-gradient(90deg,#00ffcc,#00aaff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+    background:linear-gradient(90deg,#00ffcc,#00aaff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
 
-.lesson-checks{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
-  gap:12px;
-  margin-bottom:20px;
-}
+  .lesson-checks{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+    gap:12px;
+    margin-bottom:20px;
+  }
 
-.lesson-checks label{
-  background:#1b1b1b;
-  border:1px solid #333;
-  padding:12px;
-  border-radius:14px;
-  cursor:pointer;
-  transition:0.25s;
+  .lesson-checks label{
+    background:#1b1b1b;
+    border:1px solid #333;
+    padding:12px;
+    border-radius:14px;
+    cursor:pointer;
+    transition:0.25s;
 
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
 
-.lesson-checks label:hover{
-  background:#2a2a2a;
-  transform:translateY(-2px);
-}
+  .lesson-checks label:hover{
+    background:#2a2a2a;
+    transform:translateY(-2px);
+  }
 
-.lesson-checks input{
-  transform:scale(1.2);
-  accent-color:#00ffcc;
-}
+  .lesson-checks input{
+    transform:scale(1.2);
+    accent-color:#00ffcc;
+  }
 
-/* board */
-
-#gameBoard{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:16px;
-  margin-top:25px;
-}
-
-/* card */
-
-.game-card{
-  position:relative;
-
-  min-height:140px;
-
-  border-radius:20px;
-
-  background:linear-gradient(145deg,#1f1f1f,#2b2b2b);
-
-  border:1px solid #333;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-
-  cursor:pointer;
-
-  overflow:hidden;
-
-  transition:
-    transform .25s,
-    box-shadow .25s,
-    background .25s;
-}
-
-.game-card:hover{
-  transform:
-    translateY(-6px)
-    scale(1.03);
-
-  box-shadow:
-    0 10px 25px rgba(0,255,200,.15);
-
-  background:linear-gradient(145deg,#252525,#333);
-}
-
-.game-card:active{
-  transform:scale(.96);
-}
-
-/* số thứ tự */
-
-.card-number{
-  position:absolute;
-  top:10px;
-  left:12px;
-
-  font-size:12px;
-
-  color:#888;
-
-  background:#111;
-
-  padding:3px 8px;
-
-  border-radius:999px;
-}
-
-/* ô vuông */
-
-.card-hidden{
-  font-size:34px;
-  color:#666;
-}
-
-/* hán tự */
-
-.card-hanzi{
-  font-size:34px;
-  font-weight:bold;
-  color:white;
-}
-
-/* pinyin */
-
-.card-pinyin{
-  margin-top:6px;
-
-  color:#aaa;
-
-  font-size:14px;
-}
-
-/* nghĩa */
-
-.card-meaning{
-  margin-top:10px;
-
-  color:#00ffcc;
-
-  font-size:15px;
-
-  line-height:1.4;
-}
-
-/* glow effect */
-
-.game-card::before{
-  content:"";
-
-  position:absolute;
-
-  inset:-2px;
-
-  background:
-    linear-gradient(
-      135deg,
-      transparent,
-      rgba(0,255,200,.15),
-      transparent
-    );
-
-  opacity:0;
-
-  transition:.3s;
-}
-
-.game-card:hover::before{
-  opacity:1;
-}
-
-/* mobile */
-
-@media(max-width:768px){
+  /* board */
 
   #gameBoard{
-    grid-template-columns:
-      repeat(auto-fit,minmax(100px,1fr));
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:16px;
+    margin-top:25px;
   }
+
+  /* card */
 
   .game-card{
-    min-height:120px;
+    position:relative;
+
+    min-height:140px;
+
+    border-radius:20px;
+
+    background:linear-gradient(145deg,#1f1f1f,#2b2b2b);
+
+    border:1px solid #333;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    transition:
+      transform .25s,
+      box-shadow .25s,
+      background .25s;
   }
+
+  .game-card:hover{
+    transform:
+      translateY(-6px)
+      scale(1.03);
+
+    box-shadow:
+      0 10px 25px rgba(0,255,200,.15);
+
+    background:linear-gradient(145deg,#252525,#333);
+  }
+
+  .game-card:active{
+    transform:scale(.96);
+  }
+
+  /* số thứ tự */
+
+  .card-number{
+    position:absolute;
+    top:10px;
+    left:12px;
+
+    font-size:12px;
+
+    color:#888;
+
+    background:#111;
+
+    padding:3px 8px;
+
+    border-radius:999px;
+  }
+
+  /* ô vuông */
+
+  .card-hidden{
+    font-size:34px;
+    color:#666;
+  }
+
+  /* hán tự */
 
   .card-hanzi{
-    font-size:28px;
+    font-size:34px;
+    font-weight:bold;
+    color:white;
   }
-}
-.card-done{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
 
-  color:#fff;
-}
+  /* pinyin */
 
-.card-done i{
-  font-size:42px;
-  color:#00ff99;
+  .card-pinyin{
+    margin-top:6px;
 
-  text-shadow:
-    0 0 10px rgba(0,255,150,.7);
-}
+    color:#aaa;
 
-.card-done span{
-  font-size:16px;
-  font-weight:bold;
-}
-#exitGame{
-  background:#441111;
-  color:#ffb3b3;
-  width: 150px;
-}
+    font-size:14px;
+  }
 
-#exitGame:hover{
-  background:#661111;
-}
+  /* nghĩa */
 
-.mode-switch{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-bottom:15px;
-}
+  .card-meaning{
+    margin-top:10px;
 
-.mode-switch button{
-  background:#222;
-  border:1px solid #333;
-  padding:12px;
-  border-radius:12px;
-}
+    color:#00ffcc;
 
-.mode-switch button.active{
-  background:#00ffcc;
-  color:#000;
-  font-weight:bold;
-}
-</style>
-    </style>
+    font-size:15px;
+
+    line-height:1.4;
+  }
+
+  /* glow effect */
+
+  .game-card::before{
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    background:
+      linear-gradient(
+        135deg,
+        transparent,
+        rgba(0,255,200,.15),
+        transparent
+      );
+
+    opacity:0;
+
+    transition:.3s;
+  }
+
+  .game-card:hover::before{
+    opacity:1;
+  }
+
+  /* mobile */
+
+  @media(max-width:768px){
+
+    #gameBoard{
+      grid-template-columns:
+        repeat(auto-fit,minmax(100px,1fr));
+    }
+
+    .game-card{
+      min-height:120px;
+    }
+
+    .card-hanzi{
+      font-size:28px;
+    }
+  }
+  .card-done{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+
+    color:#fff;
+  }
+
+  .card-done i{
+    font-size:42px;
+    color:#00ff99;
+
+    text-shadow:
+      0 0 10px rgba(0,255,150,.7);
+  }
+
+  .card-done span{
+    font-size:16px;
+    font-weight:bold;
+  }
+  #exitGame{
+    background:#441111;
+    color:#ffb3b3;
+    width: 150px;
+  }
+
+  #exitGame:hover{
+    background:#661111;
+  }
+
+  .mode-switch{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:15px;
+  }
+
+  .mode-switch button{
+    background:#222;
+    border:1px solid #333;
+    padding:12px;
+    border-radius:12px;
+  }
+
+  .mode-switch button.active{
+    background:#00ffcc;
+    color:#000;
+    font-weight:bold;
+  }
+    </style> 
   </head>
 
   <body>
@@ -408,6 +407,7 @@
       <button id="randomBtn">🔀 Random từ</button>
       <button id="randomHideBtn">🎲 Random + Ẩn nghĩa</button>
       <button id="randomOnlyHanziBtn">🀄 Random chỉ hiện tiếng Hán</button>
+      <button id="onlyVietnameseBtn">🇻🇳 Chỉ hiện tiếng Việt</button>
       <button id="showVocabulary">📘 Từ vựng</button>
       <button id="showGame">🎮 Chơi game</button>
     </div>   
@@ -426,6 +426,7 @@
     <label><input type="checkbox" value="7"> Bài 7</label>
     <label><input type="checkbox" value="8"> Bài 8</label>
     <label><input type="checkbox" value="9"> Bài 9</label>
+    <label><input type="checkbox" value="10"> Bài 10</label>
   </div>
 
   <div class="btn-group">
@@ -443,7 +444,37 @@
 </div>
 
   <div id="list">
-    
+    <!-- bài 10 -->
+    <div class="lesson10">
+      <P>口：khẩu</P>
+      <P>爸爸：bố</P>
+      <P>妈妈：mẹ</P>
+      <P>弟弟：em trai</P>
+      <P>妹妹：em gái</P>
+      <P>照片：ảnh chụp</P>
+      <P>律师：luật sư</P>
+      <P>和：và</P>
+      <P>今年：năm nay</P>
+      <P>多大：bao nhiêu tuổi</P>
+      <P>岁：tuổi</P>
+      <P>家人：ngườigia đình</P>
+      <P>谁：ai</P>
+      <P>哥哥：anh trai</P>
+      <P>姐姐：chị gái</P>
+      <P>只：con(lượng từ của 1 số loài động vật)</P>
+      <P>狗：chó</P>
+      <P>可爱：dễ thương, đáng yêu</P>
+      <P>医生：bác sĩ</P> 
+      <P>祖父：ông nội</P>
+      <P>祖母：bà nội</P>
+      <P>外祖父：ông ngoại</P>
+      <P>外祖母：bà ngoại</P>
+      <P>妻子：vợ</P>
+      <P>丈夫：chồng</P>
+      <P>子女：con cái</P>
+      <P>儿子：con trai</P>
+      <P>女儿：con gái</P> 
+    </div>  <hr>
     <!-- bài 9 -->
     <div class="lesson9">
       <p>喜欢：thích</p>
@@ -779,8 +810,62 @@ document.getElementById("hideAllBtn").addEventListener("click", () => {
     container.appendChild(p);
   });
 });
+  // 🇻🇳 Chỉ hiện tiếng Việt
+  document
+  .getElementById("onlyVietnameseBtn")
+  .addEventListener("click", () => {
 
-document.getElementById("randomHideBtn").addEventListener("click", () => {
+    const container = document.getElementById("list");
+
+    container.innerHTML = "";
+
+    list.forEach((item) => {
+
+      const p = document.createElement("p");
+
+      // ban đầu chỉ hiện tiếng Việt
+      p.innerHTML = `
+        ${item.vietnamese}
+
+        <span class="hanzi" style="display:none;">
+          ：${item.hanzi}
+        </span>
+
+        <span class="pinyin" style="display:none;">
+          (${item.py})
+        </span>
+
+        <i class="fa-solid fa-volume-high speak"></i>
+      `;
+
+      // hover hiện tiếng Hán + pinyin
+      p.addEventListener("mouseenter", () => {
+
+        p.querySelector(".hanzi").style.display = "inline";
+
+        p.querySelector(".pinyin").style.display = "inline";
+      });
+
+      // rời chuột thì ẩn
+      p.addEventListener("mouseleave", () => {
+
+        p.querySelector(".hanzi").style.display = "none";
+
+        p.querySelector(".pinyin").style.display = "none";
+      });
+
+      // loa đọc
+      p.querySelector(".speak").addEventListener("click", (e) => {
+
+        e.stopPropagation();
+
+        speak(item.hanzi);
+      });
+
+      container.appendChild(p);
+    });
+  });
+  document.getElementById("randomHideBtn").addEventListener("click", () => {
   shuffleArray(list);
 
   const container = document.getElementById("list");
@@ -799,14 +884,14 @@ document.getElementById("randomHideBtn").addEventListener("click", () => {
 
     // click để hiện nghĩa
    // hover vào hiện nghĩa
-p.addEventListener("mouseenter", () => {
+  p.addEventListener("mouseenter", () => {
   p.querySelector(".meaning").style.display = "inline";
-});
+  });
 
-// rời chuột thì ẩn lại
-p.addEventListener("mouseleave", () => {
+  // rời chuột thì ẩn lại
+  p.addEventListener("mouseleave", () => {
   p.querySelector(".meaning").style.display = "none";
-});
+  });
 
     // nút loa
     p.querySelector(".speak").addEventListener("click", (e) => {
@@ -816,8 +901,8 @@ p.addEventListener("mouseleave", () => {
 
     container.appendChild(p);
   });
-});
-document.getElementById("randomBtn").addEventListener("click", () => {
+  });
+  document.getElementById("randomBtn").addEventListener("click", () => {
   shuffleArray(list); // xáo trộn dữ liệu
 
   const container = document.getElementById("list");
@@ -840,7 +925,7 @@ document.getElementById("randomBtn").addEventListener("click", () => {
 
     container.appendChild(p);
   });
-});
+  });
       document.querySelectorAll("#list p").forEach((p) => {
         let text = p.textContent;
 
@@ -919,30 +1004,30 @@ document.getElementById("randomBtn").addEventListener("click", () => {
   }
 
   isReading = false;
-});
+  });
 
     document.getElementById("pauseRead").addEventListener("click", () => {
 
   speechSynthesis.pause();
-});
+  });
 
   document.getElementById("resumeRead").addEventListener("click", () => {
 
   speechSynthesis.resume();
-});
+  });
 
   document.getElementById("stopRead").addEventListener("click", () => {
 
   isReading = false;
 
   speechSynthesis.cancel();
-});
+  });
   document.getElementById("stopRead").addEventListener("click", () => {
 
   isReading = false;
 
   speechSynthesis.cancel();
-});
+  });
   document
   .getElementById("randomOnlyHanziBtn")
   .addEventListener("click", () => {
@@ -973,16 +1058,16 @@ document.getElementById("randomBtn").addEventListener("click", () => {
 
       // click hiện nghĩa + pinyin
     // hover hiện pinyin + nghĩa
-p.addEventListener("mouseenter", () => {
+  p.addEventListener("mouseenter", () => {
   p.querySelector(".pinyin").style.display = "inline";
   p.querySelector(".meaning").style.display = "inline";
-});
+  });
 
-// bỏ hover thì ẩn lại
-p.addEventListener("mouseleave", () => {
+  // bỏ hover thì ẩn lại
+  p.addEventListener("mouseleave", () => {
   p.querySelector(".pinyin").style.display = "none";
   p.querySelector(".meaning").style.display = "none";
-});
+  });
 
       // loa đọc
       p.querySelector(".speak").addEventListener("click", (e) => {
@@ -994,35 +1079,35 @@ p.addEventListener("mouseleave", () => {
     });
   });
 
-// ===== chuyển tab =====
+  // ===== chuyển tab =====
 
-const listDiv = document.getElementById("list");
-const gameSection = document.getElementById("gameSection");
+  const listDiv = document.getElementById("list");
+  const gameSection = document.getElementById("gameSection");
 
-document.getElementById("showVocabulary").onclick = () => {
+  document.getElementById("showVocabulary").onclick = () => {
 
   listDiv.style.display = "block";
   gameSection.style.display = "none";
-};
+  };
 
-document.getElementById("showGame").onclick = () => {
+  document.getElementById("showGame").onclick = () => {
 
   listDiv.style.display = "none";
   gameSection.style.display = "block";
-};
+  };
 
-// ===== chọn tất cả =====
+  // ===== chọn tất cả =====
 
-document.getElementById("selectAllGame").onclick = () => {
+  document.getElementById("selectAllGame").onclick = () => {
 
   document
     .querySelectorAll(".lesson-checks input")
     .forEach(cb => cb.checked = true);
-};
+  };
 
-// ===== game =====
+  // ===== game =====
 
-document.getElementById("startGame").onclick = () => {
+  document.getElementById("startGame").onclick = () => {
 
   const selectedLessons = [
     ...document.querySelectorAll(".lesson-checks input:checked")
@@ -1079,7 +1164,7 @@ document.getElementById("startGame").onclick = () => {
   <div class="card-hidden">
     ⬜
   </div>
-`;
+  `;
 
    card.onclick = () => {
 
@@ -1163,17 +1248,17 @@ document.getElementById("startGame").onclick = () => {
       </div>
     `;
   }
-};
+  };
 
 
 
     board.appendChild(card);
   });
-};
+  };
       
 
 
-document.getElementById("exitGame").onclick = () => {
+  document.getElementById("exitGame").onclick = () => {
 
   // ẩn game
   gameSection.style.display = "none";
@@ -1183,32 +1268,32 @@ document.getElementById("exitGame").onclick = () => {
 
   // xoá board game
   document.getElementById("gameBoard").innerHTML = "";
-};
+  };
 
-const studyMode = document.getElementById("studyMode");
-const gameMode = document.getElementById("gameMode");
+  const studyMode = document.getElementById("studyMode");
+  const gameMode = document.getElementById("gameMode");
 
-const btnStudy = document.getElementById("modeStudy");
-const btnGame = document.getElementById("modeGame");
+  const btnStudy = document.getElementById("modeStudy");
+  const btnGame = document.getElementById("modeGame");
 
-// mặc định
-btnStudy.classList.add("active");
+  // mặc định
+  btnStudy.classList.add("active");
 
-btnStudy.onclick = () => {
+  btnStudy.onclick = () => {
   studyMode.style.display = "block";
   gameMode.style.display = "none";
 
   btnStudy.classList.add("active");
   btnGame.classList.remove("active");
-};
+  };
 
-btnGame.onclick = () => {
+  btnGame.onclick = () => {
   studyMode.style.display = "none";
   gameMode.style.display = "block";
 
   btnGame.classList.add("active");
   btnStudy.classList.remove("active");
-};
+  };
     </script>
   </body>
 </html>
