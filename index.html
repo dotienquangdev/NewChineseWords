@@ -24,6 +24,201 @@
         line-height: 1.6;
         padding: 15px;
         margin: 0;
+        background: #4d4d4d;
+        color: white;
+      }
+
+      /* khu vực nút */
+      .btn-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        font-size: 15px;
+        cursor: pointer;
+        background: #292929;
+        color: white;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #444;
+        transform: scale(1.03);
+      }
+
+      /* list từ */
+      #list {
+        width: 100%;
+      }
+
+      p {
+        font-size: 17px;
+        margin: 8px 0;
+        padding: 6px;
+        border-radius: 12px;
+        background: #1c1c1c;
+        word-wrap: break-word;
+        transition: 0.2s;
+      }
+
+      p:hover {
+        background: #2b2b2b;
+        transform: translateX(5px);
+        font-size: 20px;
+      }
+
+      .pinyin {
+        color: #bdbdbd;
+        margin-left: 6px;
+        font-size: 15px;
+      }
+
+      .speak {
+        margin-left: 10px;
+        cursor: pointer;
+        color: #00ffcc;
+      }
+
+      .speak:hover {
+        color: red;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: #ff1111;
+        margin: 20px 0;
+      }
+
+      /* 📱 Mobile */
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+        .btn-group {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        button {
+          font-size: 13px;
+          padding: 10px;
+          min-height: 48px;
+        }
+        p {
+          font-size: 15px;
+          padding: 10px;
+          transition: 0.2s;
+        }
+
+        .pinyin {
+          display: block;
+          margin-top: 5px;
+          margin-left: 0;
+          font-size: 13px;
+        }
+        p:hover {
+          font-size: 19px;
+        }
+        button {
+          font-size: 14px;
+          padding: 10px;
+        }
+      }
+
+      /* 📱 rất nhỏ */
+      @media (max-width: 400px) {
+        .btn-group {
+          grid-template-columns: 1fr;
+        }
+
+        button {
+          width: 100%;
+          height: auto;
+          font-size: 12px;
+          padding: 10px;
+        }
+
+        p {
+          font-size: 10px;
+          transition: 0.2s;
+        }
+        p:hover {
+          font-size: 16px;
+        }
+      }
+
+      /* ===== GAME ===== */
+
+      #gameSection {
+        margin-top: 20px;
+      }
+
+      .game-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+
+        background: linear-gradient(90deg, #00ffcc, #00aaff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .lesson-checks {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .lesson-checks label {
+        background: #1b1b1b;
+        border: 1px solid #333;
+        padding: 12px;
+        border-radius: 14px;
+        cursor: pointer;
+        transition: 0.25s;
+
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .lesson-checks label:hover {
+        background: #2a2a2a;
+        transform: translateY(-2px);
+      }
+
+      .lesson-checks input {
+        transform: scale(1.2);
+        accent-color: #00ffcc;
+      }
+
+      /* board */
+
+      #gameBoard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 16px;
+        margin-top: 25px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        padding: 15px;
+        margin: 0;
         background: #111;
         color: white;
       }
