@@ -1232,12 +1232,51 @@
 
     <script>
       let isReading = false;
-      function speak(text) {
+
+      let chineseVoice = null;
+
+// load voice
+function loadVoices() {
+    const voices = speechSynthesis.getVoices();
+
+    chineseVoice =
+        voices.find(v => v.lang === "zh-CN") ||
+        voices.find(v => v.lang.startsWith("zh")) ||
+        null;
+}
+
+loadVoices();
+
+if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function speak(text) {
+    return new Promise(resolve => {
+
+        speechSynthesis.cancel();
+
         const utter = new SpeechSynthesisUtterance(text);
+
         utter.lang = "zh-CN";
-        utter.rate = 0.8;
+
+        utter.rate = 0.85;
+
+        utter.pitch = 1;
+
+        utter.volume = 1;
+
+        if (chineseVoice) {
+            utter.voice = chineseVoice;
+        }
+
+        utter.onend = resolve;
+
+        utter.onerror = resolve;
+
         speechSynthesis.speak(utter);
-      }
+    });
+}
       function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
           let j = Math.floor(Math.random() * (i + 1));
