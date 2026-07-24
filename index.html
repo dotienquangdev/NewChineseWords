@@ -648,6 +648,7 @@
       </div>
     </div>
     <div id="list">
+          <hr />
       <div class="hsk2 lesson23">
         <p>第：thứ...(đứng trước số để biểu thị STT)</p>
         <p>医院：bệnh viện</p>
@@ -1262,48 +1263,69 @@
 
       let chineseVoice = null;
 
-// load voice
+let chineseVoice = null;
+
+// Load voice
 function loadVoices() {
+
     const voices = speechSynthesis.getVoices();
+
+    console.log(voices);
 
     chineseVoice =
         voices.find(v => v.lang === "zh-CN") ||
+        voices.find(v => v.lang === "zh-Hans-CN") ||
         voices.find(v => v.lang.startsWith("zh")) ||
-        null;
+        voices[0];
 }
 
 loadVoices();
 
-if (speechSynthesis.onvoiceschanged !== undefined) {
-    speechSynthesis.onvoiceschanged = loadVoices;
-}
+speechSynthesis.onvoiceschanged = loadVoices;
+document.addEventListener("click", () => {
 
-function speak(text) {
-    return new Promise(resolve => {
+    if(window.__ttsUnlocked) return;
+
+    window.__ttsUnlocked = true;
+
+    const u = new SpeechSynthesisUtterance("");
+
+    speechSynthesis.speak(u);
+
+}, {once:true});
+function speak(text){
+
+    return new Promise(resolve=>{
 
         speechSynthesis.cancel();
 
-        const utter = new SpeechSynthesisUtterance(text);
+        const utter=new SpeechSynthesisUtterance(text);
 
-        utter.lang = "zh-CN";
+        utter.lang="zh-CN";
 
-        utter.rate = 0.85;
+        utter.rate=0.85;
 
-        utter.pitch = 1;
+        utter.pitch=1;
 
-        utter.volume = 1;
+        utter.volume=1;
 
-        if (chineseVoice) {
-            utter.voice = chineseVoice;
+        if(chineseVoice){
+            utter.voice=chineseVoice;
         }
 
-        utter.onend = resolve;
+        utter.onend=resolve;
+        utter.onerror=resolve;
 
-        utter.onerror = resolve;
+        setTimeout(()=>{
 
-        speechSynthesis.speak(utter);
+            speechSynthesis.speak(utter);
+
+        },120);
+
     });
+
 }
+
       function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
           let j = Math.floor(Math.random() * (i + 1));
@@ -1343,8 +1365,12 @@ function speak(text) {
 
             // loa
             p.querySelector(".speak").addEventListener("click", (e) => {
-              e.stopPropagation();
-              speak(item.hanzi);
+              
+              e.preventDefault();
+
+speechSynthesis.resume();
+
+speak(item.hanzi);
             });
 
             container.appendChild(p);
@@ -1387,8 +1413,11 @@ function speak(text) {
 
           // loa
           p.querySelector(".speak").addEventListener("click", (e) => {
-            e.stopPropagation();
-            speak(item.hanzi);
+           e.preventDefault();
+
+speechSynthesis.resume();
+
+speak(item.hanzi);
           });
 
           container.appendChild(p);
@@ -1436,9 +1465,11 @@ function speak(text) {
 
             // loa đọc
             p.querySelector(".speak").addEventListener("click", (e) => {
-              e.stopPropagation();
+              e.preventDefault();
 
-              speak(item.hanzi);
+speechSynthesis.resume();
+
+speak(item.hanzi);
             });
 
             container.appendChild(p);
@@ -1474,8 +1505,11 @@ function speak(text) {
 
           // nút loa
           p.querySelector(".speak").addEventListener("click", (e) => {
-            e.stopPropagation();
-            speak(item.hanzi);
+           e.preventDefault();
+
+speechSynthesis.resume();
+
+speak(item.hanzi);
           });
 
           container.appendChild(p);
@@ -1498,8 +1532,11 @@ function speak(text) {
 
           // thêm lại sự kiện click loa
           p.querySelector(".speak").addEventListener("click", (e) => {
-            e.stopPropagation();
-            speak(item.hanzi);
+           e.preventDefault();
+
+speechSynthesis.resume();
+
+speak(item.hanzi);
           });
 
           container.appendChild(p);
@@ -1642,8 +1679,11 @@ function speak(text) {
 
             // loa đọc
             p.querySelector(".speak").addEventListener("click", (e) => {
-              e.stopPropagation();
-              speak(item.hanzi);
+              e.preventDefault();
+
+speechSynthesis.resume();
+
+speak(item.hanzi);
             });
 
             container.appendChild(p);
