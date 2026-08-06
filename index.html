@@ -1670,10 +1670,11 @@
 
         speechSynthesis.cancel();
       });
+
       document
         .getElementById("randomOnlyHanziBtn")
         .addEventListener("click", () => {
-          shuffleArray(list);
+          // shuffleArray(list);
 
           const container = document.getElementById("list");
           container.innerHTML = "";
