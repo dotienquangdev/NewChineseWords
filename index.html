@@ -639,6 +639,7 @@
           <label><input type="checkbox" value="24" /> Bài 24</label>
           <label><input type="checkbox" value="25" /> Bài 25</label>
           <label><input type="checkbox" value="26" /> Bài 26</label>
+          <label><input type="checkbox" value="27" /> Bài 27</label>
         </div>
 
         <div class="btn-group">
@@ -651,7 +652,34 @@
       </div>
     </div>
     <div id="list">
-      <div class="hsk2 lesson25">
+      <div class="hsk2 lesson27">
+        <p>就：đã, liền (already, just)</p>
+        <p>一般：thông thường (general, usual)</p>
+        <p>打的：gọi taxi (to take a taxi)</p>
+        <p>公交卡：thẻ xe buýt (bus card)</p>
+        <p>打车：gọi xe (to call a taxi)</p>
+        <p>刷：quét (to scan, to swipe)</p>
+        <p>刷牙：đánh răng (to brush teeth)</p>
+        <p>入口：lối vào (entrance)</p>
+        <p>出口：lối ra (exit)</p>
+        <p>办：làm(to work)</p>
+        <p>自动：tự động (automatic)</p>
+        <p>售票机：máy bán vé (ticket machine)</p>
+        <p>投入：bỏ vào, thả vào (to invest, to put in)</p>
+        <p>硬币：đồng xu (coin)</p>
+        <p>的时候：lúc mà (when)</p>
+        <p>扶梯：cầu thang cuốn (escalator)</p>
+        <p>电梯：thang máy (elevator)</p>
+        <p>年轻人：người trẻ (young people)</p>
+        <p>年轻：trẻ (young)</p>
+        <p>老人：người già (old person)</p>
+        <p>前门：lối vào trước (front door)</p>
+        <p>后门：lối ra sau (back door)</p>
+        <p>窗户：cửa sổ (window)</p>
+        <p>挤：đẩy, ép (to push, to crowd)</p>
+      </div>
+      <hr />
+      <div class="hsk2 lesson26">
         <p>同屋：bạn cùng phòng (roommate)</p>
         <p>踢：đá (to kick)</p>
         <p>足球：bóng đá (football, soccer)</p>
@@ -1384,7 +1412,11 @@
 
         chineseVoice =
           preferred
-            .map((code) => voices.find((v) => v.lang && v.lang.toLowerCase() === code.toLowerCase()))
+            .map((code) =>
+              voices.find(
+                (v) => v.lang && v.lang.toLowerCase() === code.toLowerCase(),
+              ),
+            )
             .find(Boolean) ||
           voices.find((v) => v.lang && v.lang.toLowerCase().includes("zh")) ||
           null;
@@ -1392,7 +1424,10 @@
 
       loadVoices();
 
-      if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
+      if (
+        window.speechSynthesis &&
+        window.speechSynthesis.onvoiceschanged !== undefined
+      ) {
         window.speechSynthesis.onvoiceschanged = loadVoices;
       }
 
