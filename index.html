@@ -1353,45 +1353,95 @@
 
       let chineseVoice = null;
 
+      function ensureSpeechUnlocked() {
+        if (!("speechSynthesis" in window)) return false;
+
+        try {
+          if (typeof speechSynthesis.resume === "function") {
+            speechSynthesis.resume();
+          }
+        } catch (error) {
+          // ignore on unsupported browsers
+        }
+
+        return true;
+      }
+
       // load voice
       function loadVoices() {
+        if (!("speechSynthesis" in window)) return;
+
         const voices = speechSynthesis.getVoices();
 
+        const preferred = [
+          "zh-CN",
+          "zh-Hans-CN",
+          "zh-Hans",
+          "zh-TW",
+          "zh-HK",
+          "zh",
+        ];
+
         chineseVoice =
-          voices.find((v) => v.lang === "zh-CN") ||
-          voices.find((v) => v.lang.startsWith("zh")) ||
+          preferred
+            .map((code) => voices.find((v) => v.lang && v.lang.toLowerCase() === code.toLowerCase()))
+            .find(Boolean) ||
+          voices.find((v) => v.lang && v.lang.toLowerCase().includes("zh")) ||
           null;
       }
 
       loadVoices();
 
-      if (speechSynthesis.onvoiceschanged !== undefined) {
-        speechSynthesis.onvoiceschanged = loadVoices;
+      if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
       }
 
+      document.addEventListener("pointerdown", ensureSpeechUnlocked, {
+        passive: true,
+      });
+      document.addEventListener("touchstart", ensureSpeechUnlocked, {
+        passive: true,
+      });
+      document.addEventListener("click", ensureSpeechUnlocked, {
+        passive: true,
+      });
+
       function speak(text) {
+        if (!("speechSynthesis" in window)) {
+          return Promise.resolve();
+        }
+
         return new Promise((resolve) => {
-          speechSynthesis.cancel();
+          try {
+            ensureSpeechUnlocked();
+            speechSynthesis.cancel();
 
-          const utter = new SpeechSynthesisUtterance(text);
+            const utter = new SpeechSynthesisUtterance(text);
 
-          utter.lang = "zh-CN";
+            utter.lang = "zh-CN";
+            utter.rate = 0.85;
+            utter.pitch = 1;
+            utter.volume = 1;
 
-          utter.rate = 0.85;
+            if (chineseVoice) {
+              utter.voice = chineseVoice;
+            }
 
-          utter.pitch = 1;
+            if (typeof utter.voice === "undefined" || !utter.voice) {
+              const zhMatch = speechSynthesis
+                .getVoices()
+                .find((v) => v.lang && v.lang.toLowerCase().includes("zh"));
+              if (zhMatch) utter.voice = zhMatch;
+            }
 
-          utter.volume = 1;
+            utter.onend = () => resolve();
+            utter.onerror = () => resolve();
+            utter.onstart = () => ensureSpeechUnlocked();
 
-          if (chineseVoice) {
-            utter.voice = chineseVoice;
+            speechSynthesis.speak(utter);
+          } catch (error) {
+            resolve();
           }
-
-          utter.onend = resolve;
-
-          utter.onerror = resolve;
-
-          speechSynthesis.speak(utter);
         });
       }
       function shuffleArray(array) {
@@ -1619,16 +1669,6 @@
           speak(hanzi);
         });
       });
-      function speak(text) {
-        return new Promise((resolve) => {
-          const utter = new SpeechSynthesisUtterance(text);
-          utter.lang = "zh-CN";
-          utter.rate = 0.8;
-
-          utter.onend = resolve; // đọc xong mới chạy tiếp
-          speechSynthesis.speak(utter);
-        });
-      }
 
       const list = [];
 
