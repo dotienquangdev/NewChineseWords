@@ -608,6 +608,7 @@
       <button id="onlyVietnameseBtn">🇻🇳 Chỉ hiện tiếng Việt</button>
       <button id="showVocabulary">📘 Từ vựng</button>
       <button id="showGame">🎮 Chơi game</button>
+      <button id="exportWords">💾 Xuất thành file các từ đã học</button>
     </div>
 
     <div id="gameSection" style="display: none">
@@ -697,7 +698,6 @@
         <p>更：càng, hơn</p>
         <p>刮：gió (wind)</p>
         <p>台风：bão (typhoon)</p>
-        <p>下雨：mưa rơi (raining)</p>
         <p>湿度：độ ẩm (humidity)</p>
         <p>晴天：trời nắng (sunny day)</p>
         <p>阴天：trời âm u (cloudy day)</p>
@@ -1809,6 +1809,47 @@
           speak(hanzi);
         });
       });
+
+      function exportLearnedWords() {
+        const rows = [
+          ["STT", "Hán tự", "Pinyin", "Nghĩa"],
+          ...list.map((item, index) => [
+            String(index + 1),
+            item.hanzi,
+            item.py,
+            item.vietnamese,
+          ]),
+        ];
+
+        const csv = rows
+          .map((row) =>
+            row
+              .map((cell) => `"${String(cell).replace(/"/g, '""')}"`)
+              .join(","),
+          )
+          .join("\n");
+
+        const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
+        const blob = new Blob([bom, csv], {
+          type: "text/csv;charset=utf-8;",
+        });
+
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+
+        link.href = url;
+        link.download = `tu-da-hoc-${new Date()
+          .toISOString()
+          .slice(0, 10)}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      document
+        .getElementById("exportWords")
+        .addEventListener("click", exportLearnedWords);
 
       // 🔥 đọc tất cả
       document.getElementById("readAll").addEventListener("click", async () => {
