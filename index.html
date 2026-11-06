@@ -591,6 +591,79 @@
         color: #000;
         font-weight: bold;
       }
+
+      #randomLessonSection {
+        margin-bottom: 20px;
+      }
+
+      #randomLessonSection label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      #randomLessonSelect {
+        width: 100%;
+        margin-bottom: 12px;
+        padding: 12px;
+        border: 1px solid #444;
+        border-radius: 12px;
+        background: #1c1c1c;
+        color: white;
+        font-size: 16px;
+      }
+
+      #randomLessonWords {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      #randomLessonWords .random-hanzi {
+        position: relative;
+        padding: 12px;
+        border-radius: 12px;
+        background: #1c1c1c;
+        text-align: center;
+        font-size: 24px;
+        cursor: help;
+      }
+
+      #randomLessonWords .random-hanzi:hover,
+      #randomLessonWords .random-hanzi:focus {
+        background: #2b2b2b;
+        outline: 2px solid #00ffcc;
+      }
+
+      #randomLessonWords .random-word-details {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        top: calc(100% + 6px);
+        left: 50%;
+        width: max-content;
+        max-width: min(280px, 85vw);
+        padding: 8px 12px;
+        border: 1px solid #00aaff;
+        border-radius: 8px;
+        background: #111;
+        color: white;
+        font-size: 15px;
+        font-weight: normal;
+        text-align: left;
+        transform: translateX(-50%);
+      }
+
+      #randomLessonWords .random-hanzi:hover .random-word-details,
+      #randomLessonWords .random-hanzi:focus .random-word-details {
+        display: block;
+      }
+
+      #randomLessonMessage {
+        margin: 12px 0;
+        color: #ffcc66;
+      }
     </style>
   </head>
 
@@ -605,11 +678,54 @@
       <button id="randomBtn">🔀 Random từ</button>
       <button id="randomHideBtn">🎲 Random + Ẩn nghĩa</button>
       <button id="randomOnlyHanziBtn">🀄 Chỉ hiện tiếng Hán</button>
+      <button id="showRandomLesson">🎲 Random từ theo bài</button>
       <button id="onlyVietnameseBtn">🇻🇳 Chỉ hiện tiếng Việt</button>
       <button id="showVocabulary">📘 Từ vựng</button>
       <button id="showGame">🎮 Chơi game</button>
       <button id="exportWords">💾 Xuất thành file các từ đã học</button>
     </div>
+
+    <section id="randomLessonSection" style="display: none">
+      <label for="randomLessonSelect">Chọn bài muốn random:</label>
+      <select id="randomLessonSelect">
+        <option value="">-- Chọn bài --</option>
+        <option value="1">Bài 1</option>
+        <option value="2">Bài 2</option>
+        <option value="3">Bài 3</option>
+        <option value="4">Bài 4</option>
+        <option value="5">Bài 5</option>
+        <option value="6">Bài 6</option>
+        <option value="7">Bài 7</option>
+        <option value="8">Bài 8</option>
+        <option value="9">Bài 9</option>
+        <option value="10">Bài 10</option>
+        <option value="11">Bài 11</option>
+        <option value="12">Bài 12</option>
+        <option value="13">Bài 13</option>
+        <option value="14">Bài 14</option>
+        <option value="15">Bài 15</option>
+        <option value="16">Bài 16</option>
+        <option value="17">Bài 17</option>
+        <option value="18">Bài 18</option>
+        <option value="19">Bài 19</option>
+        <option value="20">Bài 20</option>
+        <option value="21">Bài 21</option>
+        <option value="22">Bài 22</option>
+        <option value="23">Bài 23</option>
+        <option value="24">Bài 24</option>
+        <option value="25">Bài 25</option>
+        <option value="26">Bài 26</option>
+        <option value="27">Bài 27</option>
+        <option value="28">Bài 28</option>
+        <option value="29">Bài 29</option>
+        <option value="30">Bài 30</option>
+        <option value="31">Bài 31</option>
+        <option value="32">Bài 32</option>
+      </select>
+      <button id="randomLessonBtn">🔀 Random</button>
+      <p id="randomLessonMessage" role="status" aria-live="polite"></p>
+      <div id="randomLessonWords"></div>
+    </section>
 
     <div id="gameSection" style="display: none">
       <div id="studyMode">
@@ -1985,15 +2101,83 @@
 
       const listDiv = document.getElementById("list");
       const gameSection = document.getElementById("gameSection");
+      const randomLessonSection = document.getElementById(
+        "randomLessonSection",
+      );
 
       document.getElementById("showVocabulary").onclick = () => {
         listDiv.style.display = "block";
         gameSection.style.display = "none";
+        randomLessonSection.style.display = "none";
       };
 
       document.getElementById("showGame").onclick = () => {
         listDiv.style.display = "none";
         gameSection.style.display = "block";
+        randomLessonSection.style.display = "none";
+      };
+
+      document.getElementById("showRandomLesson").onclick = () => {
+        listDiv.style.display = "none";
+        gameSection.style.display = "none";
+        randomLessonSection.style.display = "block";
+      };
+
+      const randomLessonSelect = document.getElementById("randomLessonSelect");
+      const randomLessonWords = document.getElementById("randomLessonWords");
+      const randomLessonMessage = document.getElementById(
+        "randomLessonMessage",
+      );
+
+      randomLessonSelect.addEventListener("change", () => {
+        randomLessonWords.innerHTML = "";
+        randomLessonMessage.textContent = "";
+      });
+
+      document.getElementById("randomLessonBtn").onclick = () => {
+        const lessonNumber = randomLessonSelect.value;
+        randomLessonWords.innerHTML = "";
+
+        if (!lessonNumber) {
+          randomLessonMessage.textContent =
+            "Vui lòng chọn bài trước khi random.";
+          return;
+        }
+
+        const lessonWords = Array.from(
+          document.querySelectorAll(`.lesson${lessonNumber} p`),
+        )
+          .map((paragraph) => {
+            const hanzi = paragraph.textContent.trim().split("：")[0].trim();
+            return list.find((item) => item.hanzi.trim() === hanzi);
+          })
+          .filter(Boolean);
+
+        if (lessonWords.length === 0) {
+          randomLessonMessage.textContent = "Bài này hiện chưa có từ vựng.";
+          return;
+        }
+
+        shuffleArray(lessonWords);
+        randomLessonMessage.textContent = "";
+
+        lessonWords.forEach((item) => {
+          const word = document.createElement("span");
+          word.className = "random-hanzi";
+          word.tabIndex = 0;
+          word.setAttribute(
+            "aria-label",
+            `${item.hanzi}, ${item.py}, ${item.vietnamese}`,
+          );
+          word.textContent = item.hanzi;
+
+          const details = document.createElement("span");
+          details.className = "random-word-details";
+          details.textContent = `${item.py} · ${item.vietnamese}`;
+          word.appendChild(details);
+
+          randomLessonWords.appendChild(word);
+        });
       };
 
       // ===== chọn tất cả =====
@@ -2142,6 +2326,7 @@
       document.getElementById("exitGame").onclick = () => {
         // ẩn game
         gameSection.style.display = "none";
+        randomLessonSection.style.display = "none";
 
         // hiện lại từ vựng
         listDiv.style.display = "block";
